@@ -4,7 +4,7 @@ class minecraft::service {
   supervisor::app {'minecraft':
     command   => $minecraft::exec,
     user      => $minecraft::user,
-    directory => $rtmp_server::home,
+    directory => $minecraft::home,
     subscribe => Class['Minecraft'],
   }
 
