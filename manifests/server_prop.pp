@@ -20,6 +20,6 @@ define minecraft::server_prop (
     path   => "${minecraft::homedir}/server.properties",
     line   => "${name}=${value}",
     match  => "${name}=.*",
-    notify => Service['minecraft'],
+    notify => Class['minecraft::service'],
   }
 }
