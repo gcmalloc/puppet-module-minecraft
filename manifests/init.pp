@@ -21,13 +21,14 @@
 #  }
 #
 class minecraft (
-  $user        = 'minecraft',
-  $group       = 'minecraft',
-  $homedir     = '/opt/minecraft',
-  $version     = '1.8.1',
-  $manage_java = true,
-  $heap_size   = 2048,
-  $heap_start  = 512,
+  $user          = 'minecraft',
+  $group         = 'minecraft',
+  $homedir       = '/opt/minecraft',
+  $version       = '1.8.1',
+  $manage_java   = true,
+  $heap_size     = 2048,
+  $heap_start    = 512,
+  $eula_accepted = true,
 )
 {
   $url = "https://s3.amazonaws.com/Minecraft.Download/versions/${version}/minecraft_server.${version}.jar"
@@ -83,6 +84,14 @@ class minecraft (
     group  => $group,
     mode   => '0664',
   } -> Minecraft::Whitelist<| |>
+
+  file {"${homedir}/eula.txt":
+    ensure  => present,
+    owner   => $user,
+    group   => $group,
+    mode    => '0664',
+    content => "eula=${eula_accepted}\n"
+  }
 
   include minecraft::service
 
