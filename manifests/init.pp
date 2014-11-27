@@ -37,7 +37,6 @@ class minecraft (
 
   class { 'java':
     distribution => 'jre',
-    before       => Class['service::minecraft']
   }
 
   group { $group:
