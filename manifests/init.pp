@@ -85,4 +85,6 @@ class minecraft (
     mode   => '0664',
   } -> Minecraft::Whitelist<| |>
 
+  include minecraft::service
+
 }
