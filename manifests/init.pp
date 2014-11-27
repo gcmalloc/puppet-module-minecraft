@@ -15,9 +15,10 @@
 # Sample Usage:
 #
 #  class { 'minecraft':
-#    user      => 'mcserver',
-#    group     => 'mcserver',
-#    heap_size => 4096,
+#    user          => 'mcserver',
+#    group         => 'mcserver',
+#    heap_size     => 4096,
+#    eula_accepted => true,
 #  }
 #
 class minecraft (
@@ -32,7 +33,7 @@ class minecraft (
 )
 {
   $url = "https://s3.amazonaws.com/Minecraft.Download/versions/${version}/minecraft_server.${version}.jar"
-  $jar_file = "${homedir}/minecraft.jar"
+  $jar_file = "${homedir}/minecraft${version}.jar"
   $exec = "java -Xmx${heap_size}M -Xms${heap_start}M -jar ${jar_file} nogui"
   ensure_packages(['wget'])
 
@@ -50,7 +51,7 @@ class minecraft (
     managehome => true,
   }
 
-  exec {'download minecraft jar':
+  exec {"download minecraft jar version ${version}":
     command => "/usr/bin/wget ${url} -O ${jar_file}",
     user    => $user,
     creates => $jar_file,
