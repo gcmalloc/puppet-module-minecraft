@@ -1,5 +1,5 @@
 class minecraft::service {
-  import supervisor
+  include supervisor
 
   supervisor::app {'minecraft':
     command   => $minecraft::exec,

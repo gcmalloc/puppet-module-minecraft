@@ -20,9 +20,9 @@
 #    heap_size => 4096,
 #  }
 #
-class minecraft(
-  $user        = 'mcserver',
-  $group       = 'mcserver',
+class minecraft (
+  $user        = 'minecraft',
+  $group       = 'minecraft',
   $homedir     = '/opt/minecraft',
   $version     = '1.8.1',
   $manage_java = true,
@@ -50,7 +50,7 @@ class minecraft(
     managehome => true,
   }
 
-  exec { 'download minecraft jar':
+  exec {'download minecraft jar':
     command => "/usr/bin/wget ${url} -O ${jar_file}",
     user    => $user,
     creates => $jar_file,
