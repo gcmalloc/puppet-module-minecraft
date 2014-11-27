@@ -5,7 +5,7 @@ class minecraft::service {
     command   => $minecraft::exec,
     user      => $minecraft::user,
     directory => $rtmp_server::home,
-    subscribe => Class['Rtmp_server::Config'],
+    subscribe => Class['Minecraft'],
   }
 
   require minecraft
