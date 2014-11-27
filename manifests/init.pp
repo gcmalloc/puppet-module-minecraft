@@ -87,7 +87,7 @@ class minecraft (
   include minecraft::service
 
   firewall {'050 enable minecraft server to be reachable':
-    provider => iptables
+    provider => iptables,
     port     => 25565,
     proto    => tcp,
     action   => accept,
