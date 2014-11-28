@@ -43,8 +43,8 @@ class minecraft (
   }
 
   $url = $use_bukkit ? {
-    true  => "https://s3.amazonaws.com/Minecraft.Download/versions/${real_version}/minecraft_server.${real_version}.jar",
-    false => "https://dl.bukkit.org/downloads/bukkit/get/${real_version}/bukkit.jar"
+    true => "https://dl.bukkit.org/downloads/bukkit/get/${real_version}/bukkit.jar"
+    false => "https://s3.amazonaws.com/Minecraft.Download/versions/${real_version}/minecraft_server.${real_version}.jar",
   }
   $jar_file = "${homedir}/minecraft${real_version}.jar"
   $exec = "java -Xmx${heap_size}M -Xms${heap_start}M -jar ${jar_file} nogui"
