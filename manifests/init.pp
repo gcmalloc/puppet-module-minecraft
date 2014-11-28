@@ -86,12 +86,20 @@ class minecraft (
     mode   => '0664',
   } -> Minecraft::Whitelist<| |>
 
+
   file {"${homedir}/eula.txt":
     ensure  => present,
     owner   => $user,
     group   => $group,
     mode    => '0664',
     content => "eula=${eula_accepted}\n"
+  }
+
+  file {"${homedir}/plugins":
+    ensure  => directory,
+    owner   => $user,
+    group   => $group,
+    mode    => '0664',
   }
 
   include minecraft::service
